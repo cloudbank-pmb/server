@@ -7,57 +7,61 @@
 	<NcHeaderMenu id="contactsmenu"
 		class="contactsmenu"
 		:aria-label="t('core', 'Search contacts')"
-		@open="handleOpen">
+		@open="onUpdateOpen">
 		<template #trigger>
 			<Contacts class="contactsmenu__trigger-icon" :size="20" />
 		</template>
-		<div class="contactsmenu__menu">
-			<div class="contactsmenu__menu__input-wrapper">
-				<NcTextField id="contactsmenu__menu__search"
-					ref="contactsMenuInput"
-					:value.sync="searchTerm"
-					trailing-button-icon="close"
-					:label="t('core', 'Search contacts')"
-					:trailing-button-label="t('core','Reset search')"
-					:show-trailing-button="searchTerm !== ''"
-					:placeholder="t('core', 'Search contacts …')"
-					class="contactsmenu__menu__search"
-					@input="onInputDebounced"
-					@trailing-button-click="onReset" />
+		<NcDialog name="Contacts"
+			:open="open"
+			@update:open="onUpdateOpen">
+			<div class="contactsmenu__menu">
+				<div class="contactsmenu__menu__input-wrapper">
+					<NcTextField id="contactsmenu__menu__search"
+						ref="contactsMenuInput"
+						:value.sync="searchTerm"
+						trailing-button-icon="close"
+						:label="t('core', 'Search contacts')"
+						:trailing-button-label="t('core','Reset search')"
+						:show-trailing-button="searchTerm !== ''"
+						:placeholder="t('core', 'Search contacts …')"
+						class="contactsmenu__menu__search"
+						@input="onInputDebounced"
+						@trailing-button-click="onReset" />
+				</div>
+				<NcEmptyContent v-if="error" :name="t('core', 'Could not load your contacts')">
+					<template #icon>
+						<Magnify />
+					</template>
+				</NcEmptyContent>
+				<NcEmptyContent v-else-if="loadingText" :name="loadingText">
+					<template #icon>
+						<NcLoadingIcon />
+					</template>
+				</NcEmptyContent>
+				<NcEmptyContent v-else-if="contacts.length === 0" :name="t('core', 'No contacts found')">
+					<template #icon>
+						<Magnify />
+					</template>
+				</NcEmptyContent>
+				<div v-else class="contactsmenu__menu__content">
+					<div id="contactsmenu-contacts">
+						<ul>
+							<Contact v-for="contact in contacts" :key="contact.id" :contact="contact" />
+						</ul>
+					</div>
+					<div v-if="contactsAppEnabled" class="contactsmenu__menu__content__footer">
+						<NcButton type="tertiary" :href="contactsAppURL">
+							{{ t('core', 'Show all contacts') }}
+						</NcButton>
+					</div>
+					<div v-else-if="canInstallApp" class="contactsmenu__menu__content__footer">
+						<NcButton type="tertiary" :href="contactsAppMgmtURL">
+							{{ t('core', 'Install the Contacts app') }}
+						</NcButton>
+					</div>
+				</div>
 			</div>
-			<NcEmptyContent v-if="error" :name="t('core', 'Could not load your contacts')">
-				<template #icon>
-					<Magnify />
-				</template>
-			</NcEmptyContent>
-			<NcEmptyContent v-else-if="loadingText" :name="loadingText">
-				<template #icon>
-					<NcLoadingIcon />
-				</template>
-			</NcEmptyContent>
-			<NcEmptyContent v-else-if="contacts.length === 0" :name="t('core', 'No contacts found')">
-				<template #icon>
-					<Magnify />
-				</template>
-			</NcEmptyContent>
-			<div v-else class="contactsmenu__menu__content">
-				<div id="contactsmenu-contacts">
-					<ul>
-						<Contact v-for="contact in contacts" :key="contact.id" :contact="contact" />
-					</ul>
-				</div>
-				<div v-if="contactsAppEnabled" class="contactsmenu__menu__content__footer">
-					<NcButton type="tertiary" :href="contactsAppURL">
-						{{ t('core', 'Show all contacts') }}
-					</NcButton>
-				</div>
-				<div v-else-if="canInstallApp" class="contactsmenu__menu__content__footer">
-					<NcButton type="tertiary" :href="contactsAppMgmtURL">
-						{{ t('core', 'Install the Contacts app') }}
-					</NcButton>
-				</div>
-			</div>
-		</div>
+		</NcDialog>
 	</NcHeaderMenu>
 </template>
 
@@ -73,6 +77,7 @@ import NcEmptyContent from '@nextcloud/vue/dist/Components/NcEmptyContent.js'
 import NcHeaderMenu from '@nextcloud/vue/dist/Components/NcHeaderMenu.js'
 import NcLoadingIcon from '@nextcloud/vue/dist/Components/NcLoadingIcon.js'
 import { translate as t } from '@nextcloud/l10n'
+import NcDialog from '@nextcloud/vue/dist/Components/NcDialog.js'
 
 import Contact from '../components/ContactsMenu/Contact.vue'
 import logger from '../logger.js'
@@ -91,6 +96,7 @@ export default {
 		NcHeaderMenu,
 		NcLoadingIcon,
 		NcTextField,
+		NcDialog,
 	},
 
 	mixins: [Nextcloud],
@@ -106,12 +112,21 @@ export default {
 			loadingText: undefined,
 			error: false,
 			searchTerm: '',
+			open: false,
 		}
 	},
 
 	methods: {
 		async handleOpen() {
 			await this.getContacts('')
+		},
+		async onUpdateOpen() {
+			if (this.open) {
+				this.open = false
+			} else {
+				await this.getContacts('')
+				this.open = true
+			}
 		},
 		async getContacts(searchTerm) {
 			if (searchTerm === '') {

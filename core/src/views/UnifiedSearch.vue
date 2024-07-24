@@ -4,8 +4,7 @@
 -->
 <template>
 	<div class="header-menu unified-search-menu">
-		<NcButton v-show="!showLocalSearch"
-			class="header-menu__trigger"
+		<NcButton class="header-menu__trigger"
 			:aria-label="t('core', 'Unified search')"
 			type="tertiary-no-background"
 			@click="toggleUnifiedSearch">

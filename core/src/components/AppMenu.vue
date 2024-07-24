@@ -115,7 +115,6 @@ export default defineComponent({
 
 <style scoped lang="scss">
 .app-menu {
-	width: 100%;
 	display: flex;
 	flex-shrink: 1;
 	flex-wrap: wrap;

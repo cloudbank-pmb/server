@@ -32,8 +32,6 @@
 	}
 
 	.header-right {
-		// Add some spacing so the last entry looks ok
-		margin-inline-end: calc(3 * var(--default-grid-baseline));
 
 		a:not(.button):focus-visible::after, div[role=button]:focus-visible::after {
 			bottom: 4px;
@@ -45,19 +43,25 @@
 	}
 
 }
+.test {
+	display: flex;
+	height: 100vh;
+}
 
 /* HEADERS ------------------------------------------------------------------ */
 #body-user #header,
 #body-settings #header,
 #body-public #header {
-	display: inline-flex;
-	position: absolute;
-	top: 0;
-	width: 100%;
-	z-index: 2000;
-	height: variables.$header-height;
-	box-sizing: border-box;
-	justify-content: space-between;
+	// display: inline-flex;
+	// position: absolute;
+	// top: 0;
+	// width: 100%;
+	// z-index: 2000;
+	// height: variables.$header-height;
+	// box-sizing: border-box;
+	// justify-content: space-between;
+	// display: grid;
+	// grid-column: 1;
 }
 
 /* LOGO and APP NAME -------------------------------------------------------- */
@@ -86,7 +90,11 @@
 
 #header {
 	/* Header menu */
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
 	$header-menu-entry-height: 44px;
+	margin: var(--body-container-margin);
 
 	.header-right > div > .menu {
 		background-color: var(--color-main-background);
@@ -94,7 +102,7 @@
 		border-radius: var(--border-radius-large);
 		box-sizing: border-box;
 		z-index: 2000;
-		position: absolute;
+		// position: absolute;
 		max-width: 350px;
 		@include header-menu-height();
 		right: 8px; // relative to parent
@@ -146,21 +154,26 @@
 		flex-shrink: 0;
 	}
 
-	#header-left, .header-left,
-	#header-right, .header-right {
-		display: inline-flex;
+
+
+	#header-left, .header-left{
+		display: flex;
+		flex-direction: column;
 		align-items: center;
 	}
 
-	#header-left, .header-left {
-		flex: 1 0;
-		white-space: nowrap;
-		min-width: 0;
-	}
+	// #header-left, .header-left {
+	// 	display: flex;
+	// 	flex-direction: column;
+	// 	justify-content: center;
+	// 	align-items: center;
+	// }
 
 	#header-right, .header-right {
-		justify-content: flex-end;
-		flex-shrink: 1;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
 	}
 
 	/* Right header standard */
@@ -170,7 +183,6 @@
 		}
 		> div,
 		> form {
-			height: 100%;
 			position: relative;
 			> .menutoggle {
 				display: flex;

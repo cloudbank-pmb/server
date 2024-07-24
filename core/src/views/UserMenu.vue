@@ -7,7 +7,8 @@
 		class="user-menu"
 		is-nav
 		:aria-label="t('core', 'Settings menu')"
-		:description="avatarDescription">
+		:description="avatarDescription"
+		@open="onUpdateOpen">
 		<template #trigger>
 			<NcAvatar v-if="!isLoadingUserStatus"
 				class="user-menu__avatar"
@@ -16,19 +17,24 @@
 				:user="userId"
 				:preloaded-user-status="userStatus" />
 		</template>
-		<ul>
-			<ProfileUserMenuEntry :id="profileEntry.id"
-				:name="profileEntry.name"
-				:href="profileEntry.href"
-				:active="profileEntry.active" />
-			<UserMenuEntry v-for="entry in otherEntries"
-				:id="entry.id"
-				:key="entry.id"
-				:name="entry.name"
-				:href="entry.href"
-				:active="entry.active"
-				:icon="entry.icon" />
-		</ul>
+		<NcDialog name="Profile"
+			class="modal"
+			:open="open"
+			@update:open="onUpdateOpen">
+			<ul>
+				<ProfileUserMenuEntry :id="profileEntry.id"
+					:name="profileEntry.name"
+					:href="profileEntry.href"
+					:active="profileEntry.active" />
+				<UserMenuEntry v-for="entry in otherEntries"
+					:id="entry.id"
+					:key="entry.id"
+					:name="entry.name"
+					:href="entry.href"
+					:active="entry.active"
+					:icon="entry.icon" />
+			</ul>
+		</NcDialog>
 	</NcHeaderMenu>
 </template>
 
@@ -42,6 +48,7 @@ import { getCapabilities } from '@nextcloud/capabilities'
 
 import NcAvatar from '@nextcloud/vue/dist/Components/NcAvatar.js'
 import NcHeaderMenu from '@nextcloud/vue/dist/Components/NcHeaderMenu.js'
+import NcDialog from '@nextcloud/vue/dist/Components/NcDialog.js'
 
 import { getAllStatusOptions } from '../../../apps/user_status/src/services/statusOptionsService.js'
 import ProfileUserMenuEntry from '../components/UserMenu/ProfileUserMenuEntry.vue'
@@ -85,6 +92,7 @@ export default {
 		NcHeaderMenu,
 		ProfileUserMenuEntry,
 		UserMenuEntry,
+		NcDialog,
 	},
 
 	data() {
@@ -99,6 +107,7 @@ export default {
 				icon: null,
 				message: null,
 			},
+			open: false,
 		}
 	},
 
@@ -151,12 +160,19 @@ export default {
 				}
 			}
 		},
+		onUpdateOpen() {
+			if (this.open) {
+				this.open = false
+			} else {
+				this.open = true
+			}
+		},
 	},
 }
 </script>
 
 <style lang="scss" scoped>
-.user-menu {
+.modal {
 	&:deep {
 		.header-menu {
 			&__trigger {
