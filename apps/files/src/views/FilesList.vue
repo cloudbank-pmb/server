@@ -101,12 +101,15 @@
 			</template>
 		</NcEmptyContent>
 
-		<!-- File list -->
-		<FilesListVirtual v-else
-			ref="filesListVirtual"
-			:current-folder="currentFolder"
-			:current-view="currentView"
-			:nodes="dirContentsSorted" />
+		<div v-else>
+			<div v-if="currentView.name === 'All files'">
+				<NavigationQuota />
+			</div>
+			<FilesListVirtual ref="filesListVirtual"
+				:current-folder="currentFolder"
+				:current-view="currentView"
+				:nodes="dirContentsSorted" />
+		</div>
 	</NcAppContent>
 </template>
 
@@ -156,6 +159,7 @@ import filesSortingMixin from '../mixins/filesSorting.ts'
 import logger from '../logger.js'
 import DragAndDropNotice from '../components/DragAndDropNotice.vue'
 import debounce from 'debounce'
+import NavigationQuota from '../components/NavigationQuota.vue'
 
 const isSharingEnabled = (getCapabilities() as { files_sharing?: boolean })?.files_sharing !== undefined
 
@@ -177,6 +181,7 @@ export default defineComponent({
 		AccountPlusIcon,
 		UploadPicker,
 		ViewGridIcon,
+		NavigationQuota,
 	},
 
 	mixins: [

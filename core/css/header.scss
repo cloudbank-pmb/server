@@ -95,6 +95,7 @@
 	justify-content: space-between;
 	$header-menu-entry-height: 44px;
 	margin: var(--body-container-margin);
+	margin-right: 0;
 
 	.header-right > div > .menu {
 		background-color: var(--color-main-background);

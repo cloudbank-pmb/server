@@ -242,7 +242,7 @@ export default defineComponent({
 		 * sure there is one at the time we call it.
 		 */
 		getBoundariesElement() {
-			return document.querySelector('.app-content > .files-list')
+			return document.querySelector('.app-content div > .files-list')
 		},
 
 		mountType() {

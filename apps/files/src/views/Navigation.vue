@@ -37,9 +37,6 @@
 		<!-- Non-scrollable navigation bottom elements -->
 		<template #footer>
 			<ul class="app-navigation-entry__settings">
-				<!-- User storage usage statistics -->
-				<NavigationQuota />
-
 				<!-- Files settings modal toggle-->
 				<NcAppNavigationItem :aria-label="t('files', 'Open the files app settings')"
 					:name="t('files', 'Files settings')"
