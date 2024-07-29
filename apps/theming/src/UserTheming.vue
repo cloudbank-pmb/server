@@ -24,7 +24,7 @@
 					@change="changeTheme" />
 			</div>
 
-			<div class="theming__preview-list">
+			<!-- <div class="theming__preview-list">
 				<ItemPreview v-for="theme in fonts"
 					:key="theme.id"
 					:selected="theme.enabled"
@@ -32,7 +32,7 @@
 					:unique="fonts.length === 1"
 					type="font"
 					@change="changeFont" />
-			</div>
+			</div> -->
 
 			<h3>{{ t('theming', 'Misc accessibility options') }}</h3>
 			<NcCheckboxRadioSwitch type="checkbox"
@@ -52,7 +52,7 @@
 				@refresh-styles="refreshGlobalStyles" />
 		</NcSettingsSection>
 
-		<NcSettingsSection class="background"
+		<!-- <NcSettingsSection class="background"
 			:name="t('theming', 'Background and color')"
 			:description="isUserThemingDisabled
 				? t('theming', 'Customization has been disabled by your administrator')
@@ -60,9 +60,9 @@
 			<BackgroundSettings v-if="!isUserThemingDisabled"
 				class="background__grid"
 				@update:background="refreshGlobalStyles" />
-		</NcSettingsSection>
+		</NcSettingsSection> -->
 
-		<NcSettingsSection :name="t('theming', 'Keyboard shortcuts')"
+		<!-- <NcSettingsSection :name="t('theming', 'Keyboard shortcuts')"
 			:description="t('theming', 'In some cases keyboard shortcuts can interfere with accessibility tools. In order to allow focusing on your tool correctly you can disable all keyboard shortcuts here. This will also disable all available shortcuts in apps.')">
 			<NcCheckboxRadioSwitch class="theming__preview-toggle"
 				:checked.sync="shortcutsDisabled"
@@ -70,7 +70,7 @@
 				@change="changeShortcutsDisabled">
 				{{ t('theming', 'Disable all keyboard shortcuts') }}
 			</NcCheckboxRadioSwitch>
-		</NcSettingsSection>
+		</NcSettingsSection> -->
 
 		<UserAppMenuSection />
 	</section>
