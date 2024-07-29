@@ -99,9 +99,9 @@ export default defineComponent({
 
 		resize() {
 			const availableWidth = (this.$el as HTMLElement).offsetWidth
-			let appCount = Math.floor(availableWidth / 50) - 1
+			let appCount = Math.floor(availableWidth / 80) - 1
 			const popoverAppCount = this.appList.length - appCount
-			if (popoverAppCount === 1) {
+			if (popoverAppCount === 0.5) {
 				appCount--
 			}
 			if (appCount < 1) {
@@ -119,10 +119,13 @@ export default defineComponent({
 	display: flex;
 	flex-shrink: 1;
 	flex-wrap: wrap;
+	justify-content: center;
 
 	&__list {
 		display: flex;
 		flex-wrap: nowrap;
+		gap: 5px;
+		place-self: center;
 	}
 
 	// Adjust the overflow NcActions styles as they are directly rendered on the background
