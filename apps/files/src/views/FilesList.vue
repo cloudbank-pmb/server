@@ -732,7 +732,7 @@ export default defineComponent({
 		flex: 0 0;
 		max-width: 100%;
 		// Align with the navigation toggle icon
-		margin-block: var(--app-navigation-padding, 4px);
+		margin-block: var(--app-navigation-padding);
 		margin-inline: calc(var(--default-clickable-area, 44px) + 2 * var(--app-navigation-padding, 4px)) var(--app-navigation-padding, 4px);
 
 		>* {
