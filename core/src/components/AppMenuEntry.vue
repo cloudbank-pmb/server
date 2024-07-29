@@ -32,97 +32,61 @@ defineProps<{
 </script>
 
 <style scoped lang="scss">
+$header-icon-size: 20px;
+
 .app-menu-entry {
-	width: var(--header-height);
-	height: var(--header-height);
 	position: relative;
+	display: flex;
+	align-items: center;
+	height: auto;
+	border-radius: 50px;
+	transition: all 0.1s ease-in-out;
 
 	&__link {
 		position: relative;
 		display: flex;
-		flex-direction: column;
 		align-items: center;
-		justify-content: center;
-		// Set color as this is shown directly on the background
-		color: var(--color-background-plain-text);
-		// Make space for focus-visible outline
 		width: calc(100% - 4px);
 		height: calc(100% - 4px);
 		margin: 2px;
+		// this is shown directly on the background
+		color: var(--color-main-text);
+		position: relative;
+		padding: 2.5px 10px;
+		padding-right: 20px;
 	}
 
 	&__label {
-		opacity: 0;
-		position: absolute;
 		font-size: 12px;
-		line-height: 1.25;
 		// this is shown directly on the background
-		color: var(--color-background-plain-text);
+		color: var(--color-main-text);
 		text-align: center;
-		bottom: 0;
-		left: 50%;
 		display: block;
 		min-width: 100%;
-		transform: translateX(-50%);
 		transition: all 0.1s ease-in-out;
 		width: 100%;
 		text-overflow: ellipsis;
 		overflow: hidden;
-		letter-spacing: -0.5px;
 	}
 
 	&--active {
 		// When hover or focus, show the label and make it bolder than the other entries
-		.app-menu-entry__label {
-			font-weight: bolder;
-		}
+		background-color: var(--color-primary-element-hover);
+			border-radius: 50px;
+			font-weight: 700;
+			&__link {
+				display: flex;
+				color: var(--color-primary-element-text);
+				img {
+					filter: var(--background-invert-if-dark);
+				}
+			}
 
-		// When active show a line below the entry as an "active" indicator
-		&::before {
-			content: " ";
-			position: absolute;
-			pointer-events: none;
-			border-bottom-color: var(--color-main-background);
-			transform: translateX(-50%);
-			width: 12px;
-			height: 5px;
-			border-radius: 3px;
-			background-color: var(--color-background-plain-text);
-			left: 50%;
-			bottom: 6px;
-			display: block;
-			transition: all 0.1s ease-in-out;
-			opacity: 1;
-		}
 	}
 
-	// Make the hovered entry bold to see that it is hovered
-	&:hover &__label,
-	&:focus-within &__label {
-		font-weight: bold;
-	}
-}
-</style>
-
-<style lang="scss">
-// Showing the label
-.app-menu-entry:hover .app-menu-entry,
-.app-menu-entry:focus-within .app-menu-entry,
-.app-menu__list:hover .app-menu-entry,
-.app-menu__list:focus-within .app-menu-entry {
-	// Move icon up so that the name does not overflow the icon
-	&__icon {
-		margin-block-end: calc(1.5 * 12px); // font size of label * line height
-	}
-
-	// Make the label visible
-	&__label {
-		opacity: 1;
-	}
-
-	// Hide indicator when the text is shown
-	&--active::before {
-		opacity: 0;
+	&:hover,
+	&:focus-within {
+		background-color: var(--color-primary-element-hover);
 	}
 }
 </style>
