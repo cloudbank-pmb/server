@@ -170,9 +170,11 @@ export default {
 <style lang="scss" scoped>
 .contactsmenu {
 	overflow-y: hidden;
+	display: flex;
+	align-items: center;
 
 	&__trigger-icon {
-		color: var(--color-background-plain-text) !important;
+		color: var(--color-main-text) !important;
 	}
 
 	&__menu {
