@@ -26,11 +26,11 @@ html {
 
 body {
 	// color-background-plain should always be defined.
-	background-color: var(--color-background-plain, var(--color-main-background));
+	background-color: var(--color-primary-element);
 	// user background, or plain color
-	background-image: var(--image-background);
-	background-size: cover;
-	background-position: center;
+	// background-image: var(--image-background);
+	// background-size: cover;
+	// background-position: center;
 	position: fixed;
 	width: 100%;
 	height: calc(100vh - env(safe-area-inset-bottom));
@@ -133,6 +133,8 @@ kbd {
 	flex-direction: column;
 	flex-grow: 0;
 	flex-shrink: 0;
+	margin-right: 5px;
+	border-radius: 20px;
 
 	.app-navigation-caption {
 		font-weight: bold;
@@ -667,12 +669,12 @@ kbd {
 	box-sizing: border-box;
 	position: static;
 	margin: var(--body-container-margin);
-	margin-top: 50px;
+	margin-top: 70px;
 	padding: 0;
 	display: flex;
 	width: calc(100% - var(--body-container-margin) * 2);
 	height: var(--body-height);
-	border-radius: var(--body-container-radius);
+	border-radius: calc(var(--body-container-radius) * 2);
 	overflow: clip;
 
 	&:not(.with-sidebar--full) {
@@ -710,6 +712,7 @@ $min-content-width: variables.$breakpoint-mobile - variables.$navigation-width -
 	overflow: auto;
 	position: initial;
 	height: 100%;
+	border-radius: 20px;
 	/* margin if navigation element is here */
 	/* no top border for first settings item */
 	> .section:first-child {
