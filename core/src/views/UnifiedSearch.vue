@@ -194,7 +194,7 @@ export default defineComponent({
 
 			&-icon {
 				// ensure the icon has the correct color
-				color: var(--color-background-plain-text) !important;
+				color: var(--color-main-text) !important;
 			}
 		}
 	}
