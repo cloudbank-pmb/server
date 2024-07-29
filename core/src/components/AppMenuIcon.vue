@@ -50,7 +50,7 @@ $unread-indicator-size: 10px;
 		transition: margin 0.1s ease-in-out;
 		height: $icon-size;
 		width: $icon-size;
-		filter: var(--background-image-invert-if-bright);
+		filter: var(--background-invert-if-bright);
 	}
 
 	&__unread {
