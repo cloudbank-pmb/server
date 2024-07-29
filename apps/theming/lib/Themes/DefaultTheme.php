@@ -196,7 +196,7 @@ class DefaultTheme implements ITheme {
 			// Margin of the body container
 			'--body-container-margin' => 'calc(var(--default-grid-baseline) * 2)',
 			// Height of the body container to fully fill the view port
-			'--body-height' => 'calc(100% - env(safe-area-inset-bottom) - var(--header-height) - var(--body-container-margin))',
+			'--body-height' => 'calc(100% - env(safe-area-inset-bottom) - 70px - var(--body-container-margin))',
 
 			// mobile. Keep in sync with core/src/init.js
 			'--breakpoint-mobile' => '1024px',
