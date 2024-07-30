@@ -138,7 +138,7 @@ kbd {
 
 	.app-navigation-caption {
 		font-weight: bold;
-		line-height: 44px;
+		line-height: 35px;
 		padding: 10px 44px 0 44px;
 		white-space: nowrap;
 		text-overflow: ellipsis;
@@ -329,14 +329,14 @@ kbd {
 				background-repeat: no-repeat;
 				display: block;
 				justify-content: space-between;
-				line-height: 44px;
-				min-height: 44px;
-				padding: 0 12px 0 14px;
+				line-height: 35px;
+				min-height: 35px;
+				padding: 0 12px 0 10px;
 				overflow: hidden;
 				box-sizing: border-box;
 				white-space: nowrap;
 				text-overflow: ellipsis;
-				border-radius: var(--border-radius-pill);
+				border-radius: calc(var(--border-radius-pill) - 10px);
 				color: var(--color-main-text);
 				flex: 1 1 0px;
 				z-index: 100; /* above the bullet to allow click*/
