@@ -345,6 +345,7 @@ $toolbar-height: 44px + $toolbar-padding * 2;
 
 	&--list-view {
 		margin-bottom: 100px;
+		margin-left: 10px;
 		// For positioning link overlay on rows
 		position: relative;
 	}
