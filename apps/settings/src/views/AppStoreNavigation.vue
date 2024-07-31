@@ -55,7 +55,7 @@
 
 			<NcAppNavigationSpacer />
 
-			<!-- App store categories -->
+			<!-- App store categories
 			<li v-if="appstoreEnabled && categoriesLoading" class="categories--loading">
 				<NcLoadingIcon :size="20" :aria-label="t('settings', 'Loading categories')" />
 			</li>
@@ -88,7 +88,7 @@
 						<NcIconSvgWrapper :path="category.icon" />
 					</template>
 				</NcAppNavigationItem>
-			</template>
+			</template> -->
 
 			<NcAppNavigationItem id="app-developer-docs"
 				:name="t('settings', 'Developer documentation ↗')"
