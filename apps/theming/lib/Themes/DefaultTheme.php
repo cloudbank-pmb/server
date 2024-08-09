@@ -112,7 +112,7 @@ class DefaultTheme implements ITheme {
 
 			// used for different active/hover/focus/disabled states
 			'--color-background-hover' => $this->util->darken($colorMainBackground, 4),
-			'--color-background-dark' => $this->util->darken($colorMainBackground, 7),
+			'--color-background-dark' => $this->util->darken($colorMainBackground, 50),
 			'--color-background-darker' => $this->util->darken($colorMainBackground, 14),
 
 			'--color-placeholder-light' => $this->util->darken($colorMainBackground, 10),
