@@ -69,7 +69,7 @@ const { profile: profileEntry, ...otherEntries } = settingsNavEntries
 // Filter otherEntries
 const entries = Object.fromEntries(
   Object.entries(otherEntries).filter(
-    ([key, data]) => data.id !== 'admin_settings')
+    ([key, data]) => data.id !== 'admin_settings' && data.id !== 'help')
 )
 
 const translateStatus = (status) => {
