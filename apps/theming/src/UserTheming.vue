@@ -72,7 +72,7 @@
 			</NcCheckboxRadioSwitch>
 		</NcSettingsSection> -->
 
-		<UserAppMenuSection />
+		<!-- <UserAppMenuSection /> -->
 	</section>
 </template>
 
