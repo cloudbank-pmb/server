@@ -36,6 +36,10 @@ window.addEventListener('DOMContentLoaded', function() {
 // Fix error "CSRF check failed"
 document.addEventListener('DOMContentLoaded', function() {
 	const form = document.getElementById('password-input-form')
+	const header = document.getElementById('header')
+	const apps = document.querySelector('#app-navigation:not(.vue)');
+	const content = document.getElementById('content');
+
 	if (form) {
 		form.addEventListener('submit', async function(event) {
 			event.preventDefault()
@@ -48,4 +52,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			form.submit()
 		})
 	}
+	const elements = [header, content, apps];
+	elements.forEach(element => element.style.opacity = '1');
+
 })
