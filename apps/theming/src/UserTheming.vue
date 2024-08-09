@@ -34,13 +34,13 @@
 					@change="changeFont" />
 			</div> -->
 
-			<h3>{{ t('theming', 'Misc accessibility options') }}</h3>
+			<!-- <h3>{{ t('theming', 'Misc accessibility options') }}</h3>
 			<NcCheckboxRadioSwitch type="checkbox"
 				:checked="enableBlurFilter === 'yes'"
 				:indeterminate="enableBlurFilter === ''"
 				@update:checked="changeEnableBlurFilter">
 				{{ t('theming', 'Enable blur background filter (may increase GPU load)') }}
-			</NcCheckboxRadioSwitch>
+			</NcCheckboxRadioSwitch> -->
 		</NcSettingsSection>
 
 		<NcSettingsSection :name="t('theming', 'Primary color')"
