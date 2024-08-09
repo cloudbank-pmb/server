@@ -164,8 +164,8 @@ export default defineComponent({
 
 		return {
 			appOrder,
-			updateAppOrder,
-			resetAppOrder,
+			// updateAppOrder,
+			// resetAppOrder,
 
 			enforcedDefaultApp,
 			hasAppOrderChanged,
